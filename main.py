@@ -29,6 +29,21 @@ class MainPage(Handler):
     def get(self):
         self.render('front.html')
 
+class NewPost(Handler):
+    def get(self):
+        self.render('newpost.html')
+
+    def post(self):
+        subject = self.request.get('subject')
+        content = self.request.get('content')
+
+        if subject and content:
+            self.write('Thanks for the post.')
+        else:
+            error = 'Both subject and content are required inputs.'
+            self.render('newpost.html', error=error, subject=subject, content=content)
+
 app = webapp2.WSGIApplication([
-    ('/', MainPage)
+    ('/', MainPage),
+    ('/newpost', NewPost)
 ], debug=True)
