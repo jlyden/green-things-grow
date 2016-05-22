@@ -15,6 +15,7 @@ body {
 }
 
 .top-bar {
+  text-decoration: none;
   color: #393;
   margin: auto;
   height: 50px;

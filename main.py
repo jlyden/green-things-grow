@@ -62,6 +62,10 @@ class NewPost(Handler):
 class SinglePost(Handler):
     def get(self, post_id):
         post = Post.get_by_id(int(post_id))
+        if not post:
+            self.error(404)
+            return
+
         self.render('singlepost.html', post=post)
 
 
