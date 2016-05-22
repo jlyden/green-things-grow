@@ -41,7 +41,6 @@ class MainPage(Handler):
         self.render('front.html', posts=posts)
 
 
-
 class NewPost(Handler):
     def get(self):
         self.render('newpost.html')

@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  color: #6C3;
   width: 800px;
   margin: 0 auto;
   padding: 30px;
@@ -14,11 +15,15 @@ body {
 }
 
 .top-bar {
-  color: #6C3;
+  color: #393;
   margin: auto;
-  width: 50%;
   height: 50px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #393;
 }
 
 label {
@@ -41,7 +46,7 @@ textarea {
 }
 
 input[type=submit] {
-  font-size: 24px;
+  font-size: 17px;
 }
 
 hr {
@@ -54,12 +59,18 @@ hr {
 
 .post {
   margin: 20px;
-  padding: 0px;
+  padding: 10px;
+  background-color: #E8E8E8;
+}
+
+.post-leaf {
+  float: left;
+  width: 30px;
 }
 
 .post-subject {
   float: left;
-  width: 640px;
+  width: 590px;
   font-weight: bold;
   font-size: 20px;
   padding-left: 10px;
