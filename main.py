@@ -3,6 +3,7 @@
 # webapp2 code copyright 2007 Google Inc.
 # Handler class courtesy of Udacity
 
+import datetime
 import os
 import jinja2
 import webapp2
@@ -35,8 +36,10 @@ class Handler(webapp2.RequestHandler):
 
 class MainPage(Handler):
     def get(self):
-        
-        self.render('front.html')
+        posts = db.GqlQuery('''SELECT * FROM Post
+                            ORDER BY created DESC LIMIT 10''')
+        self.render('front.html', posts=posts)
+
 
 
 class NewPost(Handler):
