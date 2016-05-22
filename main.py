@@ -35,6 +35,7 @@ class Handler(webapp2.RequestHandler):
 
 class MainPage(Handler):
     def get(self):
+        
         self.render('front.html')
 
 
@@ -55,15 +56,15 @@ class NewPost(Handler):
             error = 'Subject and content are required inputs.'
             self.render('newpost.html', error=error, subject=subject, content=content)
 
+
 class SinglePost(Handler):
     def get(self, post_id):
-        # ERROR: BadQueryError: Parse Error: Invalid WHERE Condition at symbol post_id
-        post_cursor = db.GqlQuery('SELECT * FROM Post WHERE post.id = post_id')
-        post = post_cursor.fetchone()
+        post = Post.get_by_id(int(post_id))
         self.render('singlepost.html', post=post)
 
+
 app = webapp2.WSGIApplication([
-    (r'/', MainPage),
-    (r'/newpost', NewPost),
-    (r'/entries/(\d+)', SinglePost)
+        (r'/', MainPage),
+        (r'/newpost', NewPost),
+        (r'/entries/(\d+)', SinglePost)
 ], debug=True)
