@@ -8,7 +8,7 @@
       <div class="post-subject">{{ post.subject }}</div>
       <div class="post-created">{{ post.created.strftime('%B %d, %Y') }}</div>
       <hr>
-      <div class="post-content">{{ post.content }}</div>
+      <pre class="post-content">{{ post.content }}</pre>
     </div>
   {% endfor %}
 {% else %}
