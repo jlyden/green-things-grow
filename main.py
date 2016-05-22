@@ -18,7 +18,7 @@ class Post(db.Model):
     subject = db.StringProperty(required=True)
     content = db.TextProperty(required=True)
     created = db.DateTimeProperty(auto_now_add=True)
-    permalink = db.StringProperty()
+
 
 
 class Handler(webapp2.RequestHandler):
@@ -49,19 +49,21 @@ class NewPost(Handler):
         if subject and content:
             new_post = Post(subject=subject, content=content)
             new_post.put()
-            new_id = new_post.key().id()
-            new_post.permalink = "/entries/" + new_id
-            new_post.put()
-            self.redirect()
+            new_post_id = new_post.key().id()
+            self.redirect('/entries/' + str(new_post_id))
         else:
             error = 'Subject and content are required inputs.'
             self.render('newpost.html', error=error, subject=subject, content=content)
 
 class SinglePost(Handler):
-    
+    def get(self, post_id):
+        # ERROR: BadQueryError: Parse Error: Invalid WHERE Condition at symbol post_id
+        post_cursor = db.GqlQuery('SELECT * FROM Post WHERE post.id = post_id')
+        post = post_cursor.fetchone()
+        self.render('singlepost.html', post=post)
 
 app = webapp2.WSGIApplication([
-    ('/', MainPage),
-    ('/newpost', NewPost),
-    ('/entries', SinglePost)
+    (r'/', MainPage),
+    (r'/newpost', NewPost),
+    (r'/entries/(\d+)', SinglePost)
 ], debug=True)
