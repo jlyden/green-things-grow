@@ -87,3 +87,12 @@ hr {
   margin: 0;
   font-size: 17px;
 }
+
+.copyright {
+  margin: 10px;
+  padding: 10px;
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+  color: grey;
+}
