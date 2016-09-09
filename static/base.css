@@ -86,6 +86,7 @@ hr {
 .post-content {
   margin: 0;
   font-size: 17px;
+  white-space: pre-wrap;    
 }
 
 .copyright {
